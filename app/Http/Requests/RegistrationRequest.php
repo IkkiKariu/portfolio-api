@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ApiTokenAuthenticationRequest extends FormRequest
+class RegistrationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,11 @@ class ApiTokenAuthenticationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email'],
-            'password' => ['required']
+            // Required credentials
+            'credentials' => ['required', 'array'],
+            'credentials.email' => ['required', 'email', 'unique:users,email'],
+            'credentials.password' => ['required', 'alpha_num:ascii'],
+            'credentials.username' => ['required', 'alpha:ascii']
         ];
     }
 }

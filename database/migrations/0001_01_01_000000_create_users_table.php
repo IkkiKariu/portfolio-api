@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            
-            $table->uuid('personal_info_id')->nullable();
-            $table->foreign('personal_info_id')->references('id')->on('personal_info');
 
             $table->string('username');
             $table->string('email')->unique();

@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('personal_info', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
+            $table->uuid('user_id')->unique();
+            $table->foreign('user_id')->references('id')->on('users');
+            
             $table->string('first_name', 128);
             $table->string('last_name', 128)->nullable();
             $table->integer('age', unsigned: true)->nullable();

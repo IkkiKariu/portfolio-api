@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-
-use App\Models\PersonalInfo;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -26,7 +23,6 @@ class User extends Authenticatable
     public $incrementing = false;
 
     protected $fillable = [
-        'personal_info_id',
         'username',
         'email',
         'password',
@@ -54,10 +50,5 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public function personalInfo(): HasOne
-    {
-        return $this->hasOne(PersonalInfo::class);
     }
 }
